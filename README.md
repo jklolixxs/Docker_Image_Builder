@@ -6,10 +6,10 @@
 ## 1.安装Docker 与 必备程序
 #### 使用Dcker官方一键安装脚本  
 >`curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh`  
-#### 安装jq软件以供筛选版本号  
->Debian/Ubuntu 使用 `apt install -y jq`  
-centos 使用 `yum install -y jq`  
-其他系统请按照各自的软件包管理程序安装软件 **jq**
+#### 安装jq与curl软件以供筛选版本号  
+>Debian/Ubuntu 使用 `apt install -y jq curl`  
+centos 使用 `yum install -y jq curl`  
+其他系统请按照各自的软件包管理程序安装软件 **jq** **curl**
 
 ## 2.执行编译前的必要命令
 > `docker buildx create --use`  
