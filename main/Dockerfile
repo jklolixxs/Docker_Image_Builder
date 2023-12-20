@@ -7,7 +7,7 @@ ENV GOARCH=$TARGETARCH
 
 RUN set -ex \
   && apk add git build-base git \
-  && git clone -b v1.7.5 --single-branch https://github.com/sagernet/sing-box /go/src/github.com/sagernet/sing-box \
+  && git clone -b v1.7.1 --single-branch https://github.com/sagernet/sing-box /go/src/github.com/sagernet/sing-box \
   && export COMMIT=$(git rev-parse --short HEAD) \
   && export VERSION=$(go run ./cmd/internal/read_tag) \
   && go build -v -trimpath -tags with_quic,with_grpc,with_dhcp,with_wireguard,with_ech,with_utls,with_reality_server,with_acme,with_clash_api,with_v2ray_api,with_gvisor \
