@@ -37,3 +37,11 @@ centos 使用 `yum install -y jq`
 ## 7.开始编译
 运行命令，脚本会自动开始查询最新版本号，并开始，编译成功后会自动推送至对应仓库  
 `/opt/docker_builder/run.sh`
+
+## 8.关于全自动构建推送
+使用Linux自带的 **crontab** 来定时执行编译脚本  
+使用指令 `crontab -e -u root` 进入，在最后一行添加 `*/5 * * * * /opt/docker_builder/run.sh`  
+保存并退出后，全自动构建脚本会每5分钟检查一次版本号，如果有变动，则会自动在后台进入构建并推送
+>`crontab`: 用于编辑、查看或删除用户的 crontab 文件。  
+>`-e`: 表示编辑 crontab 文件。  
+>`-u root`: 指定要编辑的用户。在这里，root 是目标用户。  
