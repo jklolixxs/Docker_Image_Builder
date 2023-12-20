@@ -1,6 +1,11 @@
 # Sing-Box 镜像构建
 - **本着授人以鱼不如授人以渔的原则，现公开 **https://hub.docker.com/r/jklolixxs/sing-box** 镜像的构建方法**
 
+## 镜像版本：
+正式版: v1.7.1
+
+dev: 1.8.0-beta.1
+
 ## ❗❗❗如下操作均为Linux系统中的命令行操作❗❗❗
 
 ## 1.安装Docker 与 必备程序
