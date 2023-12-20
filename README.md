@@ -2,7 +2,7 @@
 - **本着授人以鱼不如授人以渔的原则，现公开 **https://hub.docker.com/r/jklolixxs/sing-box** 镜像的构建方法**
 
 ## 镜像版本：
-正式版: v1.7.1
+正式版: v1.7.5
 
 dev: 1.8.0-beta.1
 
