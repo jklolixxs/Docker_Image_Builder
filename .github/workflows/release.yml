@@ -1,0 +1,46 @@
+name: Cross compile Sing-box
+
+on:
+  workflow_dispatch:
+
+jobs:
+  Sing-box:
+
+    name: Cross compile Sing-box
+
+    runs-on: ubuntu-20.04
+
+    env:
+      workdir: sing-box-source
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4.1.1
+        with:
+          fetch-depth: 0
+
+      - name: Git clone sing-box
+        run: |
+          git clone https://github.com/SagerNet/sing-box.git ${{ env.workdir }}
+          cp .github/sing-box.yml ${{ env.workdir }}/.goreleaser.yml
+
+      - name: Set up GoReleaser
+        uses: actions/setup-go@v5.0.0
+        with:
+          go-version: "1.21.5"
+
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v5.0.0
+        with:
+          distribution: goreleaser
+          workdir: ${{ env.workdir }}
+          version: latest
+          args: --auto-snapshot
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Release binaries 
+        uses: softprops/action-gh-release@v0.1.15
+        with:
+          tag_name: v1.8.0-rc.4
+          files: ${{ env.workdir }}/dist/*.tar.gz

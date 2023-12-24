@@ -1,0 +1,52 @@
+project_name: Build sing-box
+before:
+  hooks:
+    - go mod tidy -v
+builds:
+  - env:
+      - CGO_ENABLED=0
+    ldflags:
+      - -s -w --extldflags '-static -fpic' -X github.com/SagerNet/sing-box/constant.Version=$VERSION
+    goos:
+      - linux
+      - windows
+      - darwin
+    goarch:
+      - arm
+      - arm64
+      - 386
+      - amd64
+      - mips
+      - mipsle
+      - s390x
+      - riscv64
+    gomips:
+      - softfloat
+    ignore:
+      - goos: windows
+        goarch: arm
+      - goos: windows
+        goarch: arm64
+    main: ./cmd/sing-box/
+    binary: sing-box
+universal_binaries:
+  - name_template: "sing-box"
+    replace: false
+checksum:
+  name_template: "checksums.txt"
+snapshot:
+  name_template: "sing-box"
+archives:
+  - name_template: "sing-box_{{ .Os }}_{{ .Arch }}"
+    files:
+      - none*
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^chore"
+      - Merge pull request
+      - Merge branch
+      - go mod tidy
