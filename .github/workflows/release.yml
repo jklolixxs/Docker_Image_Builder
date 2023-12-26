@@ -21,8 +21,11 @@ jobs:
 
       - name: Git clone sing-box
         run: |
+          LATEST=$(wget -qO- "https://api.github.com/repos/SagerNet/sing-box/releases/latest" | awk -F '"' '/tag_name/{print $4}')
+          echo "VERSION=$LATEST" >> $GITHUB_ENV
           git clone https://github.com/SagerNet/sing-box.git ${{ env.workdir }}
           cp .github/sing-box.yml ${{ env.workdir }}/.goreleaser.yml
+          sed -i "s/VERSION/$LATEST/" ${{ env.workdir }}/.goreleaser.yml
 
       - name: Set up GoReleaser
         uses: actions/setup-go@v5.0.0
