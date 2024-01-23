@@ -34,7 +34,7 @@ fi
 # 检查main_next版本号是否有变动
 if [ "$local_tag" != "$new_tags" ]; then
     # 更新main_next版本号
-    sed -i "s/\(latest.*:\).*/\1 $new_tag/" $version_file
+    sed -i "s/\(latest.*:\).*/\1 $new_tags/" $version_file
 
     # 更新临时Dockerfile中的版本号
     mkdir -p $local_path/tmp/latest/ && cp $dockerfile_path $local_path/tmp/latest/Dockerfile
