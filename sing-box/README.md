@@ -5,22 +5,21 @@
 >`curl -fsSL https://get.docker.com -o get-docker.sh && sh get-docker.sh`  
 
 ## 2.执行编译前的必要命令
-> `docker buildx create --use`  
-> `docker buildx inspect --bootstrap`  
-> 这两个命令通常用于设置和准备Docker Buildx，以便能够使用其功能构建适用于多个CPU架构和操作系统的容器镜像
-直接使用
-
+> docker buildx create --use  
+> docker buildx inspect --bootstrap  
+#### 这两个命令通常用于设置和准备Docker Buildx，以便能够使用其功能构建适用于多个CPU架构和操作系统的容器镜像  
+#### （如果您之前有执行这两条命令，则无需再次执行，略过此条向下继续查看）
 > `docker login`  
 > 在您的机器上登录Docker Hub账号，用以后面向账号中的仓库推送镜像
 
 ## 3.拉取仓库
 * 方法一：使用git拉取  
-  > `git clone https://github.com/jklolixxs/Sing-Box_Builder.git /opt/docker_builder`
+  > `git clone https://github.com/jklolixxs/Docker_Image_Builder.git /opt/Docker_Image_Builder`
 * 方法二：下载压缩包自行解压
-  > 如果您不知道在哪里下载仓库压缩包，可以 **[点击此处一键下载](https://codeload.github.com/jklolixxs/docker_builder/zip/refs/heads/main)**
+  > 如果您不知道在哪里下载仓库压缩包，可以 **[点击此处一键下载](https://codeload.github.com/jklolixxs/Docker_Image_Builder/zip/refs/heads/main)**
 
 ## 4.检查路径
-检查是否将 **sing-box** 文件夹放入 /opt/docker_builder/ 中  
+检查是否将 **sing-box** 文件夹放入 /opt/Docker_Image_Builder/ 中  
 
 ## 5.更改细节
 用您喜欢的文本编辑器，编辑 **build.sh** 文件中的的内容  
@@ -28,16 +27,16 @@
 
 ## 6.提权
 给予一键编译脚本权限  
-`chmod +x /opt/docker_builder/sing-box/build.sh`
+`chmod +x /opt/Docker_Image_Builder/sing-box/build.sh`
 
 ## 7.开始编译
 运行命令，脚本会自动开始查询最新版本号，并开始，编译成功后会自动推送至对应仓库  
-`/opt/docker_builder/sing-box/build.sh`
+`/opt/Docker_Image_Builder/sing-box/build.sh`
 
 ## 8.关于全自动构建推送
 使用Linux自带的 **crontab** 来定时执行编译脚本  
-使用指令 `crontab -e -u root` 进入，在最后一行添加 `*/5 * * * * /opt/docker_builder/sing-box/build.sh`  
-保存并退出后，全自动构建脚本会每5分钟检查一次版本号，如果有变动，则会自动在后台进入构建并推送
+使用指令 `crontab -e -u root` 进入，在最后一行添加 `* */1 * * * /opt/Docker_Image_Builder/sing-box/build.sh`  
+保存并退出后，全自动构建脚本会每小时检查一次版本号，如果有变动，则会自动在后台进入构建并推送（不宜设置过短，容易触发GitHub限制，导致版本号查询失败）
 >`crontab`: 用于编辑、查看或删除用户的 crontab 文件。  
 >`-e`: 表示编辑 crontab 文件。  
 >`-u root`: 指定要编辑的用户。在这里，root 是目标用户。  
