@@ -1,10 +1,10 @@
 #!/bin/bash
 # 主目录
-local_path="/opt/docker_builder/sing-box"
+local_path="/opt/Docker_Image_Builder/sing-box"
 # Dockerfile路径
-dockerfile_path="/opt/docker_builder/sing-box/Dockerfile"
+dockerfile_path="/opt/Docker_Image_Builder/sing-box/Dockerfile"
 # 存储版本号的文件路径
-version_file="/opt/docker_builder/sing-box/version_file.txt"
+version_file="/opt/Docker_Image_Builder/sing-box/version_file.txt"
 # Docker Hub的用户名
 username="用户名"
 # Docker Hub中的仓库名
