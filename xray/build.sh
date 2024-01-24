@@ -8,15 +8,15 @@ if ! command -v jq &> /dev/null; then
 fi
 
 # 主目录
-local_path="/opt/docker_builder/xray"
+local_path="/opt/Docker_Image_Builder/xray"
 # Dockerfile路径
-dockerfile_path="/opt/docker_builder/xray/Dockerfile"
+dockerfile_path="/opt/Docker_Image_Builder/xray/Dockerfile"
 # 存储版本号的文件路径
-version_file="/opt/docker_builder/xray/version_file.txt"
-# 用户名
-username="jklolixxs"
-# 仓库名
-repositories="xray"
+version_file="/opt/Docker_Image_Builder/xray/version_file.txt"
+# Docker Hub的用户名
+username="用户名"
+# Docker Hub中的仓库名
+repositories="仓库名"
 
 # 读取本地储存的版本号
 local_tag=$(awk '/latest/{print $NF; exit}' $version_file)
