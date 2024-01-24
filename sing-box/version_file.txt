@@ -1,2 +1,2 @@
-main-next:v1.8.2
-dev-next:v1.8.0-rc.11
+main-next:v1.0.0
+dev-next:v1.0.0
